@@ -1,12 +1,12 @@
 angular.module('video-player')
   .service('getVideos', function($http) {
-    this.getData = function(callback) {
+    this.getData = function(callback, query = 'dogs') {
       $http({
         method: 'GET',
         url: 'https://www.googleapis.com/youtube/v3/search',
         params: {
           'key': window.YOUTUBE_API_KEY,
-          'q': 'dogs',
+          'q': query,
           'maxResults': 5,
           'videoEmbeddable': true,
           'type': 'video',
@@ -14,9 +14,9 @@ angular.module('video-player')
         }
       }).then(function(data) {
         callback(data);
-        console.log("Request succeful!", data);
+        console.log('Request succseful!', data);
       }, function() {
-        console.log("Request NOT succeful!");
+        console.log('Request NOT succseful!');
       });
-    }
+    };
   });

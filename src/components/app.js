@@ -4,16 +4,22 @@ angular.module('video-player')
       this.videos = window.exampleVideoData;
       this.currentVideo = window.exampleVideoData[0];      
       
-      var app = this;
-      this.selectVideo = function(index) {
-        app.currentVideo = window.exampleVideoData[index];    
+      
+      this.selectVideo = (index) => {
+        this.currentVideo = this.videos[index];    
       };
 
-      getVideos.getData(function(data) {
-        app.videos = data.data.items;
-        app.currentVideo = data.data.items[0];
-        console.log(this);
+      getVideos.getData( (data) => {
+        this.videos = data.data.items;
+        this.currentVideo = data.data.items[0];
       });
+
+      this.searchVideo = (query) => {
+        getVideos.getData( (data) => {
+          this.videos = data.data.items;
+          this.currentVideo = data.data.items[0];
+        }, query);
+      };
     },
     templateUrl: '/src/templates/app.html',
     

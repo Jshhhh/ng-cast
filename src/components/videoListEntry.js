@@ -3,7 +3,9 @@ angular.module('video-player')
     bindings: {
       thumbnails: '<',
       title: '<',
-      description: '<'
+      description: '<',
+      selectVideo: '<',
+      index: '<'
     },
     templateUrl: 'src/templates/videoListEntry.html'
   });
